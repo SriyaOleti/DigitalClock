@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitalclock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    body{
+        background-size: 100% 520px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-repeat: no-repeat;
+        
+    }
+    #container{
+        width: 400px;
+        height: 400px;
+        border-radius: 10px;
+        background-color: gray;
+        box-shadow: 10px 10px 0px limegreen, -10px -10px 0px red;
+        opacity: 0.5;
+        position: relative;
+        left: 25%;
+        top: 50px;
+        transition: opacity;
+    }
+    #container:hover{
+        box-shadow: -10px -10px 0px limegreen, 10px 10px 0px red;
+    }
+    h1{
+        font-family: 'Orbitron', sans-serif;
+    }
+    #time{
+        font-size: 60px;
+        position: absolute;
+        top:100px;
+        left: 55%;
+    }
+    #date{
+        font-size: 40px;
+        position: absolute;
+        top:220px;
+        left: 52%;
+    }
+</style>
+</head>
+<body onload="digitalclock()" id="a">
+    <div id="container"></div>
+    <h1 id="time"></h1>
+    <h1 id="sec"></h1>
+    <h1 id="date"></h1>
+    <h1 id="day"></h1>
+    <script>
+        function digitalclock()
+        {
+            var date=new Date()
+            var hh =date.getHours()
+            var min =date.getMinutes()
+            var sec =date.getSeconds()
+            var dd=date.getDate()
+            var mo =date.getMonth()
+            var yy =date.getFullYear()
+            var dy =date.getDay()
+            var am_pm="AM"
+            if (hh>=12)
+            {
+                am_pm="PM"
+                if(hh>12)
+                {
+                    hh-=12
+                }
+            }
+            // document.writeln(dd+"/"+mo+"/"+yy+"/"+dy)
+            // document.write(hh+":"+min+":"+sec)
+            
+            if(hh==0)
+            {
+                am_pm="AM"
+                hh=12;
+            }
+            // document.write(hh+":"+am_pm)
+            var time=hh+":"+min+":"+am_pm
+            document.getElementById("time").innerHTML=time
+            if(mo==0)
+            {
+                mo="Jan"
+            }
+            else if(mo==1)
+            {
+                mo="Feb"
+            }
+            else if(mo==2)
+            {
+                mo="March"
+            }
+            else if(mo==3)
+            {
+                mo="April"
+            }
+            else if(mo==4)
+            {
+                mo="May"
+            }
+            else if(mo==5)
+            {
+                mo="June"
+            }
+            else if(mo==6)
+            {
+                mo="July"
+            }
+            else if(mo==7)
+            {
+                mo="Aug"
+            }
+            else if(mo==8)
+            {
+                mo="Sep"
+            }
+            else if(mo==9)
+            {
+                mo="Oct"
+            }
+            else if(mo==10)
+            {
+                mo="Nov"
+            }
+            else 
+            {
+                mo="Dec"
+            }
+            switch(dy)
+            {
+                case 0:
+                    dy="Sunday"
+                    document.getElementById("a").style.backgroundImage="URL(sun.jpg)"
+                    break;
+                    case 1:
+                    dy="Monday"
+                    document.getElementById("a").style.backgroundImage="URL(moon.jpg)"
+                    break;
+                    case 2:
+                    dy="Tuesday"
+                    document.getElementById("a").style.backgroundImage="URL(mars.jpg)"
+                    break;
+                    case 3:
+                    dy="Wednesday"
+                    document.getElementById("a").style.backgroundImage="URL(mercury.jpg)"
+                    break;
+                    case 4:
+                    dy="Thursday"
+                    document.getElementById("a").style.backgroundImage="URL(jupiter.jpg)"
+                    break;
+                    case 5:
+                    dy="Friday"
+                    document.getElementById("a").style.backgroundImage="URL(venus.jpg)"
+                    break;
+                    case 6:
+                    dy="Saturday"
+                    document.getElementById("a").style.backgroundImage="URL(saturn.jpg)"
+                    break;
+
+            }
+            document.getElementById("date").innerHTML=dd+"/"+mo+"/"+yy
+            document.getElementById("day").innerHTML=dy
+            document.getElementById("sec").innerHTML=sec
+            
+            var updatethetime=setTimeout(function(){digitalclock()},1000)
+            
+
+        }
+    </script>
+</body>
+</html>
